@@ -3,70 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protocolo de Seguridad - Edificio A</title>
+    <title>Seguridad Edificio A - Plantel 13</title>
     <style>
-        :root { --cobach-blue: #003366; --safety-red: #d32f2f; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; }
-        header { background-color: var(--cobach-blue); color: white; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .btn-interactivo { background: var(--safety-red); color: white; border: none; padding: 15px 25px; border-radius: 5px; cursor: pointer; width: 100%; font-size: 1.1em; transition: 0.3s; margin: 10px 0; }
-        .btn-interactivo:hover { background: #b71c1c; transform: scale(1.02); }
-        #info-panel { display: none; margin-top: 20px; padding: 15px; border-left: 5px solid var(--cobach-blue); background: #eef2f7; line-height: 1.6; }
-        .badge { background: #eee; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
-        footer { text-align: center; padding: 20px; font-size: 0.9em; color: #666; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #e9ecef; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 8px solid #003366; }
+        h1 { color: #003366; text-align: center; font-size: 24px; }
+        .btn-group { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+        .btn-interactivo { padding: 15px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 16px; transition: 0.3s; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-fisica { background-color: #d32f2f; } /* Rojo Institucional */
+        .btn-tic { background-color: #0056b3; }    /* Azul Institucional */
+        .btn-ropci { background-color: #fbc02d; color: #000; } /* Amarillo Alerta */
+        .btn-interactivo:hover { transform: scale(1.02); opacity: 0.9; }
+        #info-panel { margin-top: 20px; padding: 20px; background-color: #f8f9fa; border-left: 5px solid #003366; border-radius: 10px; min-height: 200px; }
+        .mapa-container { text-align: center; margin-top: 20px; }
+        .mapa-img { width: 100%; max-width: 700px; border: 5px solid white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Colegio de Bachilleres - Edificio A</h1>
-    <p>Portal de Seguridad Interactiva (Normativa ROPCI)</p>
-</header>
-
 <div class="container">
-    <h2>Seleccione una Categoría de Seguridad:</h2>
-    
-    <button class="btn-interactivo" onclick="mostrar('fisica')">⚡ Física de Incendios</button>
-    <button class="btn-interactivo" onclick="mostrar('tic')">💻 Sistema Digital (TIC)</button>
-    <button class="btn-interactivo" onclick="mostrar('ropci')">🛡️ Normativa ROPCI</button>
+    <h1>🛡️ Portal de Seguridad: Edificio A</h1>
+    <p style="text-align: center; color: #666;">Colegio de Bachilleres Plantel 13 Xochimilco-Tepepan</p>
+
+    <div class="btn-group">
+        <button class="btn-interactivo btn-fisica" onclick="mostrar('fisica')">🔥 Física de Incendios y Repliegue</button>
+        <button class="btn-interactivo btn-tic" onclick="mostrar('tic')">💻 Sistema Digital (TIC)</button>
+        <button class="btn-interactivo btn-ropci" onclick="mostrar('ropci')">🛡️ Normativa ROPCI</button>
+    </div>
 
     <div id="info-panel">
-        <div style="text-align: center; padding: 20px; background-color: #f4f4f4; border-radius: 15px; margin: 20px 0;">
-    <h2 style="color: #003366;">📍 Mapa de Seguridad - Edificio A</h2>
-    <img src="croquis.jpg" alt="croquis " style="width: 100%; max-width: 700px; border: 8px solid white; border-radius: 10px; box-shadow: 0px 4px 15px rgba(0,0,0,0.2);">
-    <p style="margin-top: 15px; color: #444; font-weight: bold;">Identifica tus rutas de evacuación y puntos de reunión.</p>
-</div>
-        <h3 id="panel-titulo"></h3>
-        <p id="panel-contenido"></p>
+        <h3 id="panel-titulo">📍 Mapa General de Seguridad</h3>
+        <div id="panel-contenido">
+            <p id="panel-texto">Selecciona una categoría para ver las instrucciones de seguridad, zonas de repliegue y equipo de emergencia.</p>
+            <div class="mapa-container">
+                <img src="croquis.jpg" alt="Croquis Edificio A" class="mapa-img">
+            </div>
+        </div>
     </div>
 </div>
 
-<footer>
-    <p>Desarrollado con IA para el Área de Ingeniería y TIC</p>
-</footer>
-
 <script>
-    const datos = {
-        fisica: {
-            titulo: "Análisis Físico del Fuego",
-            contenido: "<b>Transferencia de Calor:</b> En el Edificio A, vigilamos la Convección y Radiación. <br><br><b>Presión de Fluidos:</b> Los extintores operan bajo leyes de gases ideales. Un extintor de $CO_2$ debe mantener una presión interna de aproximadamente $5.5 \text{ MPa}$ a $20°C$."
-        },
-        tic: {
-            titulo: "Infraestructura Digital de Emergencia",
-            contenido: "<b>IA en Seguridad:</b> Este sitio web utiliza algoritmos de optimización para mostrar rutas de evacuación. <br><br><b>Inventario QR:</b> Cada punto de seguridad está vinculado a la base de datos central de DG para evitar extravíos."
-        },
-        ropci: {
-            titulo: "Cumplimiento Normativo ROPCI",
-            contenido: "<b>Instalaciones:</b> Cumplimos con la dotación de extintores portátiles y señalética fotoluminiscente. <br><br><b>Mantenimiento:</b> Según el ROPCI, la revisión trimestral es obligatoria para garantizar la eficacia de los sistemas activos."
-        }
-    };
-
     function mostrar(categoria) {
-        const panel = document.getElementById('info-panel');
-        document.getElementById('panel-titulo').innerText = datos[categoria].titulo;
-        document.getElementById('panel-contenido').innerHTML = datos[categoria].contenido;
-        panel.style.display = 'block';
-        panel.scrollIntoView({behavior: "smooth"});
+        const titulo = document.getElementById('panel-titulo');
+        const texto = document.getElementById('panel-texto');
+        
+        const datos = {
+            'fisica': {
+                'titulo': '🔥 Instrucciones de Repliegue e Incendios',
+                'texto': '<b>Zonas de Menor Riesgo:</b> Ubícate en las columnas y muros de carga del Edificio A. Aléjate de ventanales y objetos que puedan caer.<br><br><b>Zonas de Mayor Riesgo:</b> Pasillos con vitrales y escaleras durante el movimiento.<br><br><b>Combate de Incendios:</b> Contamos con extintores PQS vigentes. Identifica el más cercano en el mapa.'
+            },
+            'tic': {
+                'titulo': '💻 Innovación Tecnológica en Seguridad',
+                'texto': 'Como parte de la transversalidad académica, este portal permite el acceso rápido a los protocolos desde cualquier dispositivo.<br><br><b>Proyecto:</b> Digitalización de planos de señalización para respuesta inmediata.'
+            },
+            'ropci': {
+                'titulo': '🛡️ Cumplimiento Normativo ROPCI',
+                'texto': '<b>Estatus:</b> Este plantel cumple con el Reglamento de Instalaciones contra Incendios.<br><br><b>Señalética:</b> Todas las rutas de evacuación y puntos de reunión cumplen con la norma de fotoluminiscencia y dimensiones oficiales.'
+            }
+        };
+
+        const info = datos[categoria];
+        titulo.innerHTML = info.titulo;
+        texto.innerHTML = info.texto;
     }
 </script>
 
